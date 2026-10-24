@@ -77,13 +77,26 @@ export class CvPage {
     }
     const top = Math.max(box.y, 0)
     const bottom = Math.min(box.y + box.height, viewport.height)
+    const y = Math.round((top + bottom) / 2)
+    const startX = Math.round(box.x + box.width * 0.8)
+    const endX = Math.round(box.x + box.width * 0.2)
+    const steps = 12
     const client = await this.page.context().newCDPSession(this.page)
-    await client.send('Input.synthesizeScrollGesture', {
-      x: Math.round(box.x + box.width * 0.75),
-      y: Math.round((top + bottom) / 2),
-      xDistance: -Math.round(box.width * 0.6),
-      speed: 1200,
-      gestureSourceType: 'touch',
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchStart',
+      touchPoints: [{ x: startX, y }],
+    })
+    for (const step of Array.from({ length: steps }, (_, index) => index + 1)) {
+      await client.send('Input.dispatchTouchEvent', {
+        type: 'touchMove',
+        touchPoints: [
+          { x: Math.round(startX + ((endX - startX) * step) / steps), y },
+        ],
+      })
+    }
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchEnd',
+      touchPoints: [],
     })
   }
 
