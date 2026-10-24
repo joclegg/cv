@@ -69,16 +69,20 @@ export class CvPage {
   }
 
   async swipeLeft() {
+    await this.currentSlide.scrollIntoViewIfNeeded()
     const box = await this.currentSlide.boundingBox()
-    if (!box) {
+    const viewport = this.page.viewportSize()
+    if (!box || !viewport) {
       throw new Error('slide not laid out')
     }
+    const top = Math.max(box.y, 0)
+    const bottom = Math.min(box.y + box.height, viewport.height)
     const client = await this.page.context().newCDPSession(this.page)
     await client.send('Input.synthesizeScrollGesture', {
       x: Math.round(box.x + box.width * 0.75),
-      y: Math.round(box.y + 40),
+      y: Math.round((top + bottom) / 2),
       xDistance: -Math.round(box.width * 0.6),
-      speed: 2000,
+      speed: 1200,
       gestureSourceType: 'touch',
     })
   }
