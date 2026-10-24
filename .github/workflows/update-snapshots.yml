@@ -2,6 +2,8 @@ name: Update screenshot snapshots
 
 on:
   workflow_dispatch:
+  push:
+    branches: [rewrite]
 
 permissions:
   contents: write
