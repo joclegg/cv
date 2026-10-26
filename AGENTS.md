@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Joseph Clegg's CV site, served at https://joclegg.github.io.
+Joseph Clegg's CV site, served at https://joclegg.github.io/cv/.
 
 ## Stack
 

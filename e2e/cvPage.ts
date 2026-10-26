@@ -32,7 +32,7 @@ export class CvPage {
   }
 
   async open() {
-    await this.page.goto('/')
+    await this.page.goto('./')
   }
 
   async reload() {

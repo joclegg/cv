@@ -1,6 +1,6 @@
-# joclegg.github.io
+# cv
 
-Joseph Clegg's CV site, served at https://joclegg.github.io.
+Joseph Clegg's CV site, served at https://joclegg.github.io/cv/.
 
 Built with Vite, React 19, TypeScript 7 and Tailwind CSS v4. See [AGENTS.md](AGENTS.md) for the stack, commands, structure and coding rules.
 
