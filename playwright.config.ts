@@ -12,7 +12,7 @@ export default defineConfig({
   snapshotPathTemplate:
     '{testDir}/{testFileDir}/__snapshots__/{arg}-{projectName}-{platform}{ext}',
   use: {
-    baseURL: `http://localhost:${PORT}`,
+    baseURL: `http://localhost:${PORT}/cv/`,
     trace: 'on-first-retry',
     launchOptions: { slowMo: Number(process.env.SLOW_MO ?? 0) },
   },
@@ -29,7 +29,7 @@ export default defineConfig({
   ],
   webServer: {
     command: `npm run build && npm run preview -- --port ${PORT} --strictPort`,
-    url: `http://localhost:${PORT}`,
+    url: `http://localhost:${PORT}/cv/`,
     reuseExistingServer: !process.env.CI,
   },
 })
