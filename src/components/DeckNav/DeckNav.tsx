@@ -4,6 +4,7 @@ import { cn } from '@/common/utils.functions'
 import { Button } from '@/components/Button/Button'
 import { BUTTON_SIZE } from '@/components/Button/Button.constants'
 import type { DeckSlide } from '@/components/Deck/Deck.types'
+import { DECK_NAV_LABEL } from '@/components/DeckNav/DeckNav.constants'
 
 export function DeckNav({
   slides,
@@ -16,12 +17,12 @@ export function DeckNav({
 }) {
   return (
     <nav
-      aria-label="Slides"
+      aria-label={DECK_NAV_LABEL.NAV}
       className="flex items-center justify-between gap-4 px-4 py-3 sm:px-8"
     >
       <Button
         size={BUTTON_SIZE.ICON}
-        aria-label="Previous slide"
+        aria-label={DECK_NAV_LABEL.PREVIOUS}
         disabled={current === 0}
         onClick={() => onSelect(current - 1)}
       >
@@ -32,7 +33,7 @@ export function DeckNav({
           <button
             key={slide.id}
             type="button"
-            aria-label={`Go to ${slide.label}`}
+            aria-label={`${DECK_NAV_LABEL.GO_TO} ${slide.label}`}
             aria-current={index === current ? 'step' : undefined}
             onClick={() => onSelect(index)}
             className="flex size-6 items-center justify-center"
@@ -48,7 +49,7 @@ export function DeckNav({
       </div>
       <Button
         size={BUTTON_SIZE.ICON}
-        aria-label="Next slide"
+        aria-label={DECK_NAV_LABEL.NEXT}
         disabled={current === slides.length - 1}
         onClick={() => onSelect(current + 1)}
       >
