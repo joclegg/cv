@@ -8,6 +8,7 @@ import { ExperienceCard } from '@/components/ExperienceCard/ExperienceCard'
 import { ProfileHeader } from '@/components/ProfileHeader/ProfileHeader'
 import { Section } from '@/components/Section/Section'
 import { ThemeToggle } from '@/components/ThemeToggle/ThemeToggle'
+import { CV_SECTION_TITLE } from '@/views/CvView/CvView.constants'
 
 export function CvView({ cv = CV }: { cv?: Cv }) {
   const experienceSlides = cv.experience.map((job) => ({
@@ -29,18 +30,18 @@ export function CvView({ cv = CV }: { cv?: Cv }) {
       </div>
       <div className="space-y-2">
         <h2 className="px-4 text-lg font-semibold tracking-tight sm:px-8">
-          Experience
+          {CV_SECTION_TITLE.EXPERIENCE}
         </h2>
-        <Deck label="Experience" slides={experienceSlides} />
+        <Deck label={CV_SECTION_TITLE.EXPERIENCE} slides={experienceSlides} />
       </div>
       <div className="space-y-10 px-4 sm:px-8">
-        <Section title="Education">
+        <Section title={CV_SECTION_TITLE.EDUCATION}>
           <EducationList items={cv.education} />
         </Section>
-        <Section title="Skills">
+        <Section title={CV_SECTION_TITLE.SKILLS}>
           <BadgeList items={cv.skills} kind={BADGE_LIST_KIND.SKILL} />
         </Section>
-        <Section title="Interests">
+        <Section title={CV_SECTION_TITLE.INTERESTS}>
           <BadgeList items={cv.interests} kind={BADGE_LIST_KIND.INTEREST} />
         </Section>
       </div>

@@ -1,6 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test'
 
 import { CV } from '@/common/cv.constants'
+import { DECK_NAV_LABEL } from '@/components/DeckNav/DeckNav.constants'
 import { THEME_OPTION } from '@/components/ThemeToggle/ThemeToggle.constants'
 import type { Theme } from '@/components/ThemeToggle/ThemeToggle.types'
 
@@ -27,8 +28,10 @@ export class CvPage {
     this.currentSlide = page.locator(
       '[aria-roledescription="slide"][aria-hidden="false"]',
     )
-    this.previousButton = page.getByRole('button', { name: 'Previous slide' })
-    this.nextButton = page.getByRole('button', { name: 'Next slide' })
+    this.previousButton = page.getByRole('button', {
+      name: DECK_NAV_LABEL.PREVIOUS,
+    })
+    this.nextButton = page.getByRole('button', { name: DECK_NAV_LABEL.NEXT })
   }
 
   async open() {
@@ -60,7 +63,9 @@ export class CvPage {
   }
 
   async jumpTo(label: string) {
-    await this.page.getByRole('button', { name: `Go to ${label}` }).click()
+    await this.page
+      .getByRole('button', { name: `${DECK_NAV_LABEL.GO_TO} ${label}` })
+      .click()
   }
 
   async pressKey(key: string) {

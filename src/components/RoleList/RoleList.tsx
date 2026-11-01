@@ -1,9 +1,10 @@
 import type { Role } from '@/common/cv.types'
 import { formatRange } from '@/common/format.functions'
+import { ROLE_LIST_LABEL } from '@/components/RoleList/RoleList.constants'
 
 export function RoleList({ roles }: { roles: Role[] }) {
   return (
-    <ol aria-label="Roles" className="space-y-1">
+    <ol aria-label={ROLE_LIST_LABEL} className="space-y-1">
       {roles.map((role) => (
         <li
           key={`${role.title}-${role.start}`}
