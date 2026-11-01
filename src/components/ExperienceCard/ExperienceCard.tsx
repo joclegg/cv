@@ -9,6 +9,7 @@ import { CardDescription } from '@/components/CardDescription/CardDescription'
 import { CardHeader } from '@/components/CardHeader/CardHeader'
 import { CardTitle } from '@/components/CardTitle/CardTitle'
 import { HighlightList } from '@/components/HighlightList/HighlightList'
+import { OptionalLink } from '@/components/OptionalLink/OptionalLink'
 import { ProjectSection } from '@/components/ProjectSection/ProjectSection'
 import { RoleList } from '@/components/RoleList/RoleList'
 
@@ -19,16 +20,7 @@ export function ExperienceCard({ job }: { job: Experience }) {
         <CardHeader className="gap-3">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <CardTitle className="text-xl">
-              {job.url ? (
-                <a
-                  href={job.url}
-                  className="underline-offset-4 hover:underline"
-                >
-                  {job.company}
-                </a>
-              ) : (
-                job.company
-              )}
+              <OptionalLink href={job.url}>{job.company}</OptionalLink>
             </CardTitle>
             <span className="text-sm whitespace-nowrap text-muted-foreground">
               {formatRange(getTenure(job.roles))}

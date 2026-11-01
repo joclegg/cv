@@ -31,9 +31,7 @@ export function CvView({ cv = CV }: { cv?: Cv }) {
         <h2 className="px-4 text-lg font-semibold tracking-tight sm:px-8">
           Experience
         </h2>
-        <div className="flex flex-col">
-          <Deck label="Experience" slides={experienceSlides} />
-        </div>
+        <Deck label="Experience" slides={experienceSlides} />
       </div>
       <div className="space-y-10 px-4 sm:px-8">
         <Section title="Education">
